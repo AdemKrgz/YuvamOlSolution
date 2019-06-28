@@ -1,0 +1,86 @@
+﻿@model CinsVM
+
+@{
+    ViewBag.Title = "CinsAdd";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@section scripts{
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.summernote').summernote({
+                height: 200
+            });
+        });
+    </script>
+}
+
+<h3>Cins Ekleme Paneli</h3>
+<div class="row">
+    <div class="col-md-12">
+        @Html.ActionLink("Mevcut Cins Listesi", "CinsListele")
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        @using (Html.BeginForm("CinsAdd", "Admin", FormMethod.Post, new { id = "CinsAddPost" , @role = "form", @enctype = "multipart/form-data" } ))
+        {
+            @Html.AntiForgeryToken();
+            <div class="portlet-body form">
+                <!-- BEGIN FORM-->
+                <div class="form-body">
+
+                    <div class="form-group">
+                        <label class="col-md-12 control-label"><strong>Tür Adı:</strong></label>
+                        <div class="col-md-12">
+                            @Html.DropDownListFor(x => x.turId, (SelectList)ViewBag.TurleriGetir, new { @class = "form-control", id = "Turler" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-12 control-label"><strong>Ad:</strong></label>
+                        <div class="col-md-12">
+                            @Html.TextBoxFor(x => x.cins.Ad, new { @class = "form-control", type = "text", placeholder = "Ad giriniz" })
+                            @Html.ValidationMessageFor(x => x.cins.Ad, null, new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    @*<div class="form-group">
+                        <label class="col-md-12 control-label"><strong>Icon URL:</strong></label>
+                        <div class="col-md-12">
+                            @Html.TextAreaFor(x => x.cins.IconUrl, new { @class = "form-control summernote", type = "text", placeholder = "Ad giriniz" })
+
+                        </div>
+                    </div>*@
+
+                    <div class="form-group">
+                            <label class="col-md-4 control-label">İcon URL</label>
+                            <div class="col-md-8">
+                                <input type="file" name="file" >
+                            </div>
+                        </div>
+                    <div class="form-group">
+                        <label class="col-md-12 control-label"><strong>Detay:</strong></label>
+                        <div class="col-md-12">
+
+                            @Html.TextAreaFor(x => x.cins.Detay, new { @class = "form-control summernote", cols = 30, rows = 10, type = "text", placeholder = "Açıklama" })
+                            @Html.ValidationMessageFor(x => x.cins.Detay, null, new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+                    <div class="form-group last mt-2 clearfix">
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-8">
+                            <button type="submit" class="btn green">Submit</button>
+                            <button type="button" class="btn default">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- END FORM-->
+            </div>
+        }
+    </div>
+</div>

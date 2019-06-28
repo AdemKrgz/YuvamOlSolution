@@ -1,0 +1,80 @@
+﻿@model RegisterVM
+
+@{
+    ViewBag.Title = "UyeOl";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section baslik{
+    <section class="banner-area relative" id="home">
+        <div class="overlay overlay-bg"></div>
+        <div class="container">
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="about-content col-lg-12">
+                    <h1 class="text-white">
+                        Anasayfa
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+@using (Html.BeginForm("UyeOl", "Hesap", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="container row" style="margin-top:100px">
+
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="content">
+                <!-- BEGIN REGISTRATION FORM -->
+                <div class="form-group">
+                    <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+                    <label class="control-label visible-ie8 visible-ie9">Ad</label>
+                    @*<input class="form-control placeholder-no-fix" type="text" placeholder="Full Name" name="fullname" />*@
+                    @Html.TextBoxFor(x => x.Name, new { @maxlength = "20", @class = "form-control placeholder-no-fix", type = "text", placeholder = "Ad", name = "fullname" })
+                    @Html.ValidationMessageFor(x => x.Name, null, new { @class = "text-danger", id = "ad" })
+                </div>
+                <div class="form-group">
+                    <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+                    <label class="control-label visible-ie8 visible-ie9">Soyad</label>
+                    @*<input class="form-control placeholder-no-fix" type="text" placeholder="Email" name="email" />*@
+                    @Html.TextBoxFor(x => x.Surname, new { @maxlength = "20", @class = "form-control placeholder-no-fix", type = "text", placeholder = "Soyad", name = "surname" })
+                    @Html.ValidationMessageFor(x => x.Surname, null, new { @class = "text-danger", id = "ad" })
+                </div>
+                <div class="form-group">
+                    <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+                    <label class="control-label visible-ie8 visible-ie9">Kullanıcı Adı</label>
+                    @*<input class="form-control placeholder-no-fix" type="text" placeholder="Email" name="email" />*@
+                    @Html.TextBoxFor(x => x.Username, new { @maxlength = "20", @class = "form-control placeholder-no-fix", type = "text", placeholder = "Kullanıcı Adı", name = "username" })
+                    @Html.ValidationMessageFor(x => x.Username, null, new { @class = "text-danger", id = "ad" })
+                </div>
+                <div class="form-group">
+                    <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+                    <label class="control-label visible-ie8 visible-ie9">E-Posta</label>
+                    @*<input class="form-control placeholder-no-fix" type="text" placeholder="Email" name="email" />*@
+                    @Html.TextBoxFor(x => x.Email, new { @maxlength = "100", @class = "form-control placeholder-no-fix", type = "email", placeholder = "E-Posta", name = "email" })
+                    @Html.ValidationMessageFor(x => x.Email, null, new { @class = "text-danger", id = "ad" })
+                </div>
+                <div class="form-group">
+                    <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+                    <label class="control-label visible-ie8 visible-ie9">Şifre</label>
+                    @*<input class="form-control placeholder-no-fix" type="text" placeholder="Email" name="email" />*@
+                    @Html.TextBoxFor(x => x.Password, new { @minlength = "6", @class = "form-control placeholder-no-fix", type = "password", placeholder = "Şifre", name = "password" })
+                    @Html.ValidationMessageFor(x => x.Password, null, new { @class = "text-danger", id = "ad" })
+                </div>
+                <div class="form-group">
+                    <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+                    <label class="control-label visible-ie8 visible-ie9">Şifre Tekrar</label>
+                    @*<input class="form-control placeholder-no-fix" type="text" placeholder="Email" name="email" />*@
+                    @Html.TextBoxFor(x => x.ConfirmPassword, new { @minlength = "10", @class = "form-control placeholder-no-fix", type = "password", placeholder = "Şifre Tekrar", name = "confirmpassword" })
+                    @Html.ValidationMessageFor(x => x.ConfirmPassword, null, new { @class = "text-danger", id = "ad" })
+                </div>
+                <!-- END REGISTRATION FORM -->
+            </div>
+            <button type="submit" class="btn btn-primary">Üye Ol</button>
+        </div>
+        <div class="col-md-3">   </div>
+    </div>
+}

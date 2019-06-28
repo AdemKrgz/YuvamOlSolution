@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "Galeri";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section baslik{
+
+
+    <section class="banner-area relative" id="home">
+        <div class="overlay overlay-bg"></div>
+        <div class="container">
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="about-content col-lg-12">
+                    <h1 class="text-white">
+                        Galeri
+                    </h1>
+                    <p class="text-white link-nav">@Html.ActionLink("Index", "Index")  <span class="lnr lnr-arrow-right"></span> @Html.ActionLink("Galeri", "Galeri") </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @*<section class="wellcome_area">
+            <div class="container">
+                <div class=" row">
+                    <div class="thumbnail" style="margin-top:20px;margin-left:10px; margin-bottom:20px;">
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="wellcome">
+                                <div class="img-holder">
+                                    <figure><a href="blog-detail.html"><img class="rounded" src="~/template/animalshelter/img/about-img.jpg" height="250" width="250" alt=""></a></figure>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+        </section>*@
+    <div class="container gallery-container">
+        <div class="row">
+            <div class="col-md-12" style="color:white"> .</div>
+        </div>
+        @*@Html.Partial("~/Views/Partials/_PartialIlanVer.cshtml")*@
+
+        
+        @Html.Partial("~/Views/Partials/_PartialGaleriFotografSirala.cshtml")
+                
+    </div>
+
+
+}

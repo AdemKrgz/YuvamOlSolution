@@ -1,0 +1,43 @@
+﻿@model ICollection<GonulluOl>
+@{
+    ViewBag.Title = "TurListele";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        @Html.ActionLink("Ana Sayfa", "Index")
+    </div>
+</div>
+
+<h3>Gönüllü Listesi</h3>
+
+<table class="table">
+    <tr>
+        <th>Ad</th>
+        <th>Soyad</th>
+        <th>Adres</th>
+        <th>E-Mail</th>
+        <th>Telefon</th>
+        <th>Not</th>
+        
+
+    </tr>
+    @foreach (var item in Model)
+    {
+
+        <tr>
+            <td>@item.Ad</td>
+            <td>@item.Soyad</td>
+            <td>@item.Adres</td>
+            <td>@item.EMail</td>
+            <td>@item.Telefon</td>
+            <td>@item.Notlar</td>
+
+
+        </tr>
+    }
+
+</table>
+
+

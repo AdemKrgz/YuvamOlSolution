@@ -1,0 +1,47 @@
+﻿@model Tur
+@{
+                /**/
+
+                ViewBag.Title = "TurUpdate";
+                Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h3>Tür Güncelleme Paneli</h3>
+@using (Html.BeginForm("TurUpdate", "Admin", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.Id)
+    <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <div class="form-body">
+
+            <div class="form-group">
+                <label class="col-md-12 control-label"><strong>Tür Adı:</strong></label>
+                <div class="col-md-12">
+                    @Html.TextBoxFor(x => x.Ad, new { @class = "form-control", type = "text", placeholder = "Ad giriniz" })
+                    @Html.ValidationMessageFor(x => x.Ad, null, new { @class = "text-danger" })
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-12 control-label"><strong>Açıklama:</strong></label>
+                <div class="col-md-12">
+
+                    @Html.TextAreaFor(x => x.Aciklama, new { @class = "form-control summernote", cols = 30, rows = 10, type = "text", placeholder = "Açıklama" })
+                    @Html.ValidationMessageFor(x => x.Aciklama, null, new { @class = "text-danger" })
+
+                </div>
+            </div>
+            <div class="form-group last mt-2 clearfix">
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-8">
+                    <button type="submit" class="btn green">Güncelle</button>
+                    
+                </div>
+            </div>
+        </div>
+        <!-- END FORM-->
+    </div>
+
+}

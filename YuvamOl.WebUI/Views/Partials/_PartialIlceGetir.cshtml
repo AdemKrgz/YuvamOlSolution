@@ -1,0 +1,5 @@
+﻿@model List<Ilce>
+
+
+@Html.DropDownListFor(x => x.FirstOrDefault().Id, (SelectList)TempData["IlcelerList"], new { @class = "form-control", Id = "Ilceler", placeholder = "Bir Ilce Seçiniz" })
+

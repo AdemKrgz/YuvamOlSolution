@@ -1,0 +1,33 @@
+﻿@model List<Sehir>
+
+<div id="Sehirler" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+    <div class="card-body anyClass">
+
+        <ul class="sidebar-menu" id="SehirSideBar">
+            @{
+                if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        <li>
+                            @Html.ActionLink(item.Ad, "SehireGoreIlanGetir", null, new { id = item.Id, style = "" })
+                            @*@Ajax.ActionLink(item.Ad, "SehirGetir", new AjaxOptions { UpdateTargetId = item.Ad })*@
+                        </li>
+                        <hr />
+                    }
+                }
+                else
+                {
+                    <li>
+                        Kayıt Bulunamadı
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+</div>
+
+
+
+
+

@@ -1,0 +1,105 @@
+﻿@model IletisimVM
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section baslik{
+
+    <section class="banner-area relative" id="home">
+        <div class="overlay overlay-bg"></div>
+        <div class="container">
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="about-content col-lg-12">
+                    <h1 class="text-white">
+                        İletişim
+                    </h1>
+                    <p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="contact.html"> Contact Us</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+}
+    <section class="contact-page-area section-gap" id="iletisim">
+        <div class="container">
+
+            <div class="alert alert-success">
+                <div class="row">
+                    <div class="col-md-12 col-12 ">
+                        <div class="">
+                            <strong>Bilgilendirme: </strong>Evcil hayvan sahiplenirken kafanızda soru işaretleri varsa bize ulaşın.
+                        </div>
+                    </div><div class="col-md-4 col-12 text-right">
+
+                    </div>
+                </div>
+            </div>
+
+            @using (Html.BeginForm("Iletisim", "Home", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken();
+            <div class="portlet-body form">
+                <div class="form-body">
+
+                    <div class="form-group">
+
+                        <div class="col-md-12">
+                            @Html.TextBoxFor(x => x.bizeUlasin.AdSoyad, new { @class = "form-control", type = "text", placeholder = "İsminizi Giriniz" })
+                            @Html.ValidationMessageFor(x=>x.bizeUlasin.AdSoyad,null, new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <div class="col-md-12">
+                            @Html.TextBoxFor(x => x.bizeUlasin.EPosta, new { @class = "form-control", type = "text", placeholder = "E-mail Giriniz" })
+                            @Html.ValidationMessageFor(x => x.bizeUlasin.EPosta, null, new { @class = "text-danger" })
+                        </div>
+                    </div>
+                   
+                    <div class="form-group">
+                       
+                        <div class="col-md-12">
+
+                            @Html.TextAreaFor(x => x.bizeUlasin.Mesaj, new { @class = "form-control summernote", cols = 30, rows = 10, type = "text", placeholder = "Açıklama" })
+                            @Html.ValidationMessageFor(x => x.bizeUlasin.Mesaj, null, new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group last mt-2 clearfix">
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-8">
+                            <button type="submit" class="btn green">Submit</button>
+                            <button type="button" class="btn default">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+                @*<div class="row">
+
+                    <div class="col-lg-8">
+                        <form class="form-area " id="myForm" action="mail.php" method="post" class="contact-form text-right">
+                            <div class="row">
+                                <div class="col-lg-6 form-group">
+                                    <input name="name" placeholder="Enter your name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" class="common-input mb-20 form-control" required="" type="text">
+
+                                    <input name="email" placeholder="Enter email address" pattern="[A-Za-z0-9._%+-]+[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" class="common-input mb-20 form-control" required="" type="email">
+                                    <input name="subject" placeholder="Enter your subject" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your subject'" class="common-input mb-20 form-control" required="" type="text">
+                                </div>
+                                <div class="col-lg-6 form-group">
+                                    <textarea class="common-textarea form-control" name="message" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required=""></textarea>
+                                </div>
+                                <div class="col-lg-12 d-flex justify-content-between">
+                                    <div class="alert-msg" style="text-align: left;"></div>
+                                    <button class="genric-btn primary circle" style="float: right;">Send Message</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>*@
+            }
+            </div>
+    </section>

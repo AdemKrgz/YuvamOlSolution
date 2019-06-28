@@ -1,0 +1,55 @@
+﻿@model LoginVM
+
+<div class="modal-dialog" role="document" style="margin-top:100px;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Giriş Yap</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+            @using (Html.BeginForm("GirisYap", "Hesap", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div class="modal-body">
+                    <div class="content">
+                        <!-- BEGIN REGISTRATION FORM -->
+                        <div class="form-group">
+                            <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+                            <label class="control-label visible-ie8 visible-ie9">Kullanıcı Adı</label>
+                            @*<input class="form-control placeholder-no-fix" type="text" placeholder="Full Name" name="fullname" />*@
+                            @Html.TextBoxFor(x => x.Username, new { @maxlength = "20", @class = "form-control placeholder-no-fix", type = "text", placeholder = "Kullanıcı Adı", name = "fullname" })
+                            @Html.ValidationMessageFor(x => x.Username, null, new { @class = "text-danger", id = "username" })
+                        </div>
+                        <div class="form-group">
+                            <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+                            <label class="control-label visible-ie8 visible-ie9">Şifre</label>
+                            @*<input class="form-control placeholder-no-fix" type="text" placeholder="Email" name="email" />*@
+                            @Html.TextBoxFor(x => x.Password, new { @minlength = "6", @class = "form-control placeholder-no-fix", type = "password", placeholder = "Şifre", name = "password" })
+                            @Html.ValidationMessageFor(x => x.Password, null, new { @class = "text-danger", id = "sifre" })
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="rem-password">
+                                    <p>
+                                        Beni Hatırla
+                                        <input type="checkbox" class="rem-checkbox" />
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-sm-8 text-right">
+                                <div class="forgot-password">
+                                    <a href="javascript:;" id="forget-password" class="forget-password">Şifremi Unuttum</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END REGISTRATION FORM -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Giriş Yap</button>
+                </div>
+            }
+    </div>
+</div>
+

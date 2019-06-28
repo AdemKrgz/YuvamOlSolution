@@ -1,0 +1,142 @@
+﻿@model IlanDetayVM
+
+@{
+    ViewBag.Title = "IlanEkle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    SelectList TurlerList = (SelectList)TempData["TurlerList"];
+    SelectList CinslerList = (SelectList)TempData["CinslerList"];
+    SelectList SehirlerList = (SelectList)TempData["SehirlerList"];
+    SelectList IlcelerList = (SelectList)TempData["IlcelerList"];
+    List<Cins> cinsler = (List<Cins>)TempData["Cinsler"];
+    List<Ilce> ilceler = (List<Ilce>)TempData["Ilceler"];
+
+}
+@section baslik{
+    <section class="banner-area relative" id="home">
+        <div class="overlay overlay-bg"></div>
+        <div class="container">
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="about-content col-lg-12">
+                    <h1 class="text-white">
+                        Ilan Ekle
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<div class="container">
+    <div class="row" style="color:white;">.</div>
+    <div class="row">
+        <div class="col-md-3 "></div>
+        <div class="col-md-6 ">
+
+            @using (Html.BeginForm("IlanEkle", "Home", FormMethod.Post, new { id = "IlanEklePost", @role = "form", @enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken();
+                <div class="form-group">
+                    @Html.Label("İlan Başlığı", new { })
+                    @Html.TextBoxFor(x => x.ilanDetay.IlanBasligi, new { })
+                </div>
+                <div class="form-group">
+                    @Html.Label("Tür Seçiniz", new { })
+                    @Html.DropDownListFor(x => x.ilanDetay.Cins.TurId, (SelectList)TempData["TurlerList"], new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Cins Seçiniz", new { })
+                    @Html.DropDownListFor(x => x.ilanDetay.CinsId, (SelectList)TempData["CinslerList"], new { @class = "form-control" })
+
+                    @*@{
+                            Html.RenderPartial("~/Views/Partials/_PartialCinsGetir.cshtml", cinsler);
+                        }*@
+                </div>
+                <div class="form-group">
+                    @Html.Label("Şehir Seçiniz", new { })
+                    @Html.DropDownListFor(x => x.ilanDetay.Ilce.SehirId, (SelectList)TempData["SehirlerList"], new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("İlçe Seçiniz", new { })
+                    @Html.DropDownListFor(x => x.ilanDetay.IlceId, (SelectList)TempData["IlcelerList"], new { @class = "form-control" })
+
+                    @*@{
+                            Html.RenderPartial("~/Views/Partials/_PartialIlceGetir.cshtml", ilceler);
+                        }*@
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Fotograf ekle</label>
+                    <div class="col-md-8">
+                        <input type="file" name="file" multiple>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("İlan Açıklaması", new { })
+                    @Html.TextAreaFor(x => x.ilanDetay.IlanIcerigi, new { @class = "row:5" })
+                </div>
+                <button type="submit" class="primary-btn float-right">Ekle</button>
+
+            }
+
+        </div>
+        <div class="col-md-3 "></div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#ilanDetay_Cins_TurId").change(function () {
+            var id = $(this).val();
+            var CinsList = $("#ilanDetay_CinsId");
+            CinsList.empty();
+            $.ajax({
+                url: '/Home/CinsList',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    __RequestVerificationToken: gettoken(),
+                    'TurId': id
+                },
+                success: function (data) {
+                    $.each(data, function (index, option) {
+                        CinsList.append('<option value=' + option.Value + '> ' + option.Text + '</option>');
+                    });
+                }
+            });
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#ilanDetay_Ilce_SehirId").change(function () {
+            var id = $(this).val();
+            var IlceList = $("#ilanDetay_IlceId");
+            IlceList.empty();
+            $.ajax({
+                url: '/Home/IlceList',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    __RequestVerificationToken: gettoken(),
+                    'SehirId': id
+                },
+                success: function (data) {
+                    $.each(data, function (index, option) {
+                        IlceList.append('<option value=' + option.Value + '> ' + option.Text + '</option>');
+                    });
+                }
+            });
+        });
+    });
+</script>
+
+<script>
+    function gettoken() {
+        var token = '@Html.AntiForgeryToken()';
+        token = $(token).val();
+        return token;
+   }
+</script>

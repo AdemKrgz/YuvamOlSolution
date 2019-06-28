@@ -1,0 +1,321 @@
+﻿@using System.Security.Claims
+@using YuvamOl.WebUI.Controllers;
+@using System.Web.Configuration;
+@using System.Configuration;
+@{
+    SessionStateSection SessionSettings = (SessionStateSection)ConfigurationManager.GetSection("system.web/sessionState");
+    bool durum = Request.Cookies[SessionSettings.CookieName.ToString()] != null;
+    var userInCookie = Request.Cookies["user"];
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="~/template/animalshelter/img/fav.png">
+    <!-- Author Meta -->
+    <meta name="author" content="codepixer">
+    <!-- Meta Description -->
+    <meta name="description" content="">
+    <!-- Meta Keyword -->
+    <meta name="keywords" content="">
+    <!-- meta character set -->
+    <meta charset="UTF-8">
+    <!-- Site Title -->
+    <title>Animal Shelter</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+    <!--
+    CSS
+    ============================================= -->
+    <link rel="stylesheet" href="~/template/animalshelter/css/linearicons.css">
+    <link rel="stylesheet" href="~/template/animalshelter/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/template/animalshelter/css/bootstrap.css">
+    <link rel="stylesheet" href="~/template/animalshelter/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/template/animalshelter/css/nice-select.css">
+    <link rel="stylesheet" href="~/template/animalshelter/css/animate.min.css">
+    <link rel="stylesheet" href="~/template/animalshelter/css/owl.carousel.css">
+    <link rel="stylesheet" href="~/template/animalshelter/css/main.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
+
+    <link href="~/template/animalshelter/css/sehirarama.css" rel="stylesheet" />
+    <link href="~/template/animalshelter/css/petturleri.css" rel="stylesheet" />
+    <link href="~/template/animalshelter/css/YuvamOl.css" rel="stylesheet" />
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" rel="stylesheet" />
+
+    <title>@ViewBag.Title</title>
+    <script src="~/template/animalshelter/js/vendor/jquery-2.2.4.min.js"></script>
+    <script src="~/template/animalshelter/js/vendor/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header id="header" class="header-scrolled col-md-12 col-sm-12" style="background-color:#5f615d;">
+        <div class="container main-menu">
+            <div class="row align-items-center justify-content-between ">
+                <div id="logo">
+                    <a href="index.html"></a>
+                </div>
+                <nav id="nav-menu-container">
+                    <ul class="nav-menu sf-js-enabled sf-arrows" style="touch-action: pan-y;">
+                        <li>@Html.ActionLink("Ana Sayfa", "Index")</li>
+                        <li>@Html.ActionLink("Pet Türleri", "PetTurleri")</li>
+                        <li>@Html.ActionLink("Gönüllü Ol", "GonulluOl")</li>
+                        <li class="menu-has-children">
+                            <a href="" class="sf-with-ul">Biz Kimiz?</a>
+                            <ul style="display: none;">
+                                <li>@Html.ActionLink("Hakkimizda", "Hakkimizda")</li>
+                                <li>@Html.ActionLink("Galeri", "Galeri")</li>
+                                <li>@Html.ActionLink("Iletisim", "Iletisim")</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+
+                @if (userInCookie != null)
+                {
+                    if (userInCookie.Name=="user")
+                    {
+                        HesapController hsp = new HesapController();
+                        AppUser user = hsp.KullaniciGetir(User.Identity.Name);
+                        <span style="color:white">
+                            Hoşgeldiniz, sayın @(user.Name + " " + user.Surname)
+                            @Html.ActionLink("Çıkış", "Cikis", "Hesap", null, new { @class = "btn btn-danger" })
+                        </span>
+
+                    }
+                    else
+                    {
+                        <!-- Button trigger modal -->
+                        <button type="button" id="girisYapButton" class="btn btn-info col-md-2 col-sm-2" data-toggle="modal" data-target="#girisYap">
+                            Giriş Yap
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="girisYap" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            @{
+                                Html.RenderPartial("~/Views/Partials/_PartialGirisYap.cshtml");
+                            }
+
+                        </div>
+                        <!-- Button trigger modal -->
+                        <button type="button" id="uyeOlButton" class="btn btn-info col-md-2 col-sm-2" data-toggle="modal" data-target="#uyeOl">
+                            Üye Ol
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="uyeOl" tabindex="0" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+                            @{
+                                Html.RenderPartial("~/Views/Partials/_PartialUyeOl.cshtml");
+                            }
+
+                        </div>
+                    }
+                }
+
+                else
+                {
+
+                    <!-- Button trigger modal -->
+                    <button type="button" id="girisYapButton" class="btn btn-info col-md-2 col-sm-2" data-toggle="modal" data-target="#girisYap">
+                        Giriş Yap
+                    </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="girisYap" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    @*@{
+                        Html.RenderPartial("~/Views/Partials/_PartialGirisYap.cshtml");
+                    }*@
+
+                    </div>
+                    <!-- Button trigger modal -->
+                    <button type="button" id="uyeOlButton" class="btn btn-info col-md-2 col-sm-2" data-toggle="modal" data-target="#uyeOl">
+                        Üye Ol
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="uyeOl" tabindex="0" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+                    @*@{
+                        Html.RenderPartial("~/Views/Partials/_PartialUyeOl.cshtml");
+                    }*@
+
+                    </div>
+                }
+
+
+            </div>
+        </div>
+    </header>
+    <!--Banner kısmı -->
+
+
+    @RenderSection("baslik", false);
+
+    <div class="alert alert-danger">
+        <div class="row">
+            <div class="col-md-8 col-12">
+                <div class="">
+                    <strong>Uyarı: </strong>Evcil hayvan sahiplenirken mama, aşı, taşıma bedeli gibi gerekçelerle ücret talep eden kişilere itibar etmeyin.
+                </div>
+            </div>
+            <div class="col-md-4 col-12 text-right">
+                <div class="mtop10">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        @Html.ActionLink("Ilan Ver", "IlanEkle", null, new { @class = "btn btn-info" })
+                        // @Html.ActionLink("Ilan Ver", "IlanEkle", new { UyelikDurumu = UyeMi }, new { @class = "btn btn-info" })
+                    }
+                    else
+                    {
+                        <button type="button" id="uyeOlButton" class="btn btn-info" data-toggle="modal" data-target="#girisYap">
+                            Ilan Ver
+                        </button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @RenderBody()
+
+    <!-- Start calltoaction Area -->
+    <section class="calltoaction-area section-gap relative" style="margin-top:60px;">
+        <div class="container">
+            <div class="overlay overlay-bg"></div>
+            <div class="row align-items-center justify-content-center">
+                <h1 class="text-white">Yardım mı Etmek İstiyorsun? Gönüllü Ol!</h1>
+                <p class="text-white">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Ut enim ad minim. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.
+                </p>
+                <div class="buttons d-flex flex-row">
+
+                    @Html.ActionLink("Gönüllü Ol", "GonulluOl", "", new { id = 1 }, new { @class = "primary-btn text-uppercase" })
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End calltoaction Area -->
+    <!-- start footer Area -->
+    <footer class="footer-area">
+        <div class="container">
+            <div class="row pt-120 pb-80">
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-footer-widget">
+                        <h6>About Us</h6>
+                        <p>
+                            Few would argue that, despite the advanc ements off eminism over the past three decades, women still face a double standard when it comes to their behavior. While men’s borderline-inappropriate behavior. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-footer-widget">
+                        <h6>Useful Links</h6>
+                        <div class="row">
+                            <ul class="col footer-nav">
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">Service</a></li>
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">Case Study</a></li>
+                            </ul>
+                            <ul class="col footer-nav">
+                                <li><a href="#">Pricing</a></li>
+                                <li><a href="#">Team</a></li>
+                                <li><a href="#">Blog</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4  col-md-6">
+                    <div class="single-footer-widget mail-chimp">
+                        <h6 class="mb-20">Contact Us</h6>
+                        <ul class="list-contact">
+                            <li class="flex-row d-flex">
+                                <div class="icon">
+                                    <span class="lnr lnr-home"></span>
+                                </div>
+                                <div class="detail">
+                                    <h4>Binghamton, New York</h4>
+                                    <p>
+                                        4343 Hinkle Deegan Lake Road
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="flex-row d-flex">
+                                <div class="icon">
+                                    <span class="lnr lnr-phone-handset"></span>
+                                </div>
+                                <div class="detail">
+                                    <h4>00 (953) 9865 562</h4>
+                                    <p>
+                                        Mon to Fri 9am to 6 pm
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="flex-row d-flex">
+                                <div class="icon">
+                                    <span class="lnr lnr-envelope"></span>
+                                </div>
+                                <div class="detail">
+                                    <h4>support@colorlib.com</h4>
+                                    <p>
+                                        Send us your query anytime!
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-text">
+            <div class="container">
+                <div class="row footer-bottom d-flex justify-content-between">
+                    <p class="col-lg-8 col-sm-6 footer-text m-0 text-white">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;
+                        <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </p>
+                    <div class="col-lg-4 col-sm-6 footer-social">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-dribbble"></i></a>
+                        <a href="#"><i class="fa fa-behance"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer><!-- End footer Area -->
+
+
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+    <script src="~/template/animalshelter/js/easing.min.js"></script>
+    <script src="~/template/animalshelter/js/hoverIntent.js"></script>
+    <script src="~/template/animalshelter/js/superfish.min.js"></script>
+    <script src="~/template/animalshelter/js/jquery.ajaxchimp.min.js"></script>
+    <script src="~/template/animalshelter/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/template/animalshelter/js/owl.carousel.min.js"></script>
+    <script src="~/template/animalshelter/js/jquery.nice-select.min.js"></script>
+    <script src="~/template/animalshelter/js/mail-script.js"></script>
+    <script src="~/template/animalshelter/js/main.js"></script>
+
+    <script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
+    <script>
+        baguetteBox.run('.tz-gallery');
+    </script>
+
+</body>
+</html>

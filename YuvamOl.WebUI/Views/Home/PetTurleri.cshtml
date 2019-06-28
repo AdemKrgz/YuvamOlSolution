@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "PetTurleri";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section baslik{
+    <section class="banner-area relative" id="home">
+        <div class="overlay overlay-bg"></div>
+        <div class="container">
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="about-content col-lg-12">
+                    <h1 class="text-white">
+                        Pet Türleri
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 col-sm-12">
+            @Html.Partial("~/Views/Partials/_PartialTurler.cshtml", TempData["Turler"])
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="breeds list">
+                    <div class="description" style="height:250px;">
+                        @*@Model.Tur.Aciklama*@
+
+                    </div>
+                    <div class="alfabe">
+                        <hr />
+                        @Html.Partial("~/Views/Partials/_AlfabePartial.cshtml", TempData["Cins"])
+                        <hr>
+                    </div> <div class="row">
+                        <div class="col-md-9">
+
+                            @Html.Partial("~/Views/Partials/_PartialPetTurleri.cshtml", TempData["Cinsler"])
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

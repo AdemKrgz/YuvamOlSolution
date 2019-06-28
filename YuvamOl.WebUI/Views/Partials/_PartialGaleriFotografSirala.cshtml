@@ -1,0 +1,18 @@
+﻿
+@model IEnumerable<GaleriFotograf>
+
+<div class="tz-gallery">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-sm-6 col-md-4">
+
+                <a class="lightbox" href="~/Content/Images/GaleriFotograf/@item.FotografUrl">
+                    <img src="~/Content/Images/GaleriFotograf/@item.FotografUrl" alt="Park">
+                </a>
+            </div>
+        }
+    </div>
+</div>
+
+

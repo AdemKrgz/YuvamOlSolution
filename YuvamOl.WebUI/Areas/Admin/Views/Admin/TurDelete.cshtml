@@ -1,0 +1,42 @@
+﻿@model Tur
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>TurDelete</title>
+</head>
+<body>
+    <div>
+        <h4>Bu Türü Silmek İstediğinizden Emin misiniz?</h4>
+        <hr />
+        @using (Html.BeginForm("TurDelete", "Admin", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(x => x.Id)
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Ad)
+                </dt>
+                <dd>
+
+                    @Html.TextBoxFor(x => x.Ad, new { @readonly = "true" })
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Aciklama)
+                </dt>
+                <dd>
+
+                    @Html.TextBoxFor(x => x.Aciklama, new { @readonly = "true" })
+                </dd>
+
+            </dl>
+            <input type="submit" name="name" value="Sil" class="btn btn-danger" />
+        }
+    </div>
+</body>
+</html>

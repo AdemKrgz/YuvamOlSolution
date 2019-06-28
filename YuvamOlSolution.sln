@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YuvamOl.Entity", "YuvamOl.Entity\YuvamOl.Entity.csproj", "{085596E4-4867-42A9-AF6D-566C1E3527C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YuvamOl.DAL", "YuvamOl.DAL\YuvamOl.DAL.csproj", "{03D879D7-FCF2-45B8-805F-D66C99C1E978}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YuvamOl.BLL", "YuvamOl.BLL\YuvamOl.BLL.csproj", "{BD0BB533-CF21-4ECE-A85F-5C0F2495846E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YuvamOl.WebUI", "YuvamOl.WebUI\YuvamOl.WebUI.csproj", "{BDAB2424-37FD-4145-9B1F-F7A6AB2C1EC2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{085596E4-4867-42A9-AF6D-566C1E3527C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{085596E4-4867-42A9-AF6D-566C1E3527C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{085596E4-4867-42A9-AF6D-566C1E3527C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{085596E4-4867-42A9-AF6D-566C1E3527C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03D879D7-FCF2-45B8-805F-D66C99C1E978}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03D879D7-FCF2-45B8-805F-D66C99C1E978}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03D879D7-FCF2-45B8-805F-D66C99C1E978}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03D879D7-FCF2-45B8-805F-D66C99C1E978}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD0BB533-CF21-4ECE-A85F-5C0F2495846E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD0BB533-CF21-4ECE-A85F-5C0F2495846E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD0BB533-CF21-4ECE-A85F-5C0F2495846E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD0BB533-CF21-4ECE-A85F-5C0F2495846E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDAB2424-37FD-4145-9B1F-F7A6AB2C1EC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDAB2424-37FD-4145-9B1F-F7A6AB2C1EC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDAB2424-37FD-4145-9B1F-F7A6AB2C1EC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDAB2424-37FD-4145-9B1F-F7A6AB2C1EC2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9BA203F2-6628-45A5-9956-BE1C350F4451}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://dev.azure.com/yuvamolsana
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = YuvamOl.BLL\\YuvamOl.BLL.csproj
+		SccProjectName1 = YuvamOl.BLL
+		SccLocalPath1 = YuvamOl.BLL
+		SccProjectUniqueName2 = YuvamOl.DAL\\YuvamOl.DAL.csproj
+		SccProjectName2 = YuvamOl.DAL
+		SccLocalPath2 = YuvamOl.DAL
+		SccProjectUniqueName3 = YuvamOl.Entity\\YuvamOl.Entity.csproj
+		SccProjectName3 = YuvamOl.Entity
+		SccLocalPath3 = YuvamOl.Entity
+		SccProjectUniqueName4 = YuvamOl.WebUI\\YuvamOl.WebUI.csproj
+		SccProjectName4 = YuvamOl.WebUI
+		SccLocalPath4 = YuvamOl.WebUI
+	EndGlobalSection
+EndGlobal

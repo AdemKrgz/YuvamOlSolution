@@ -1,0 +1,42 @@
+﻿
+@model GaleriFotografVM
+
+
+@{
+    ViewBag.Title = "GaleriFotografAdd";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h3>Galeri Fotograf Ekleme Paneli</h3>
+<div class="row">
+    <div class="col-md-12">
+        @using (Html.BeginForm("GaleriFotografAdd", "BizKimiz", FormMethod.Post, new { @role = "form", @enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken();
+            <div class="portlet-body form">
+                <!-- BEGIN FORM-->
+                <div class="form-body">
+                    
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Fotograf</label>
+                        <div class="col-md-8">
+                            <input type="file" name="file">
+                        </div>
+                    </div>
+
+                   
+
+                    <div class="form-group last mt-2 clearfix">
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-8">
+                            <button type="submit" class="btn green">Submit</button>
+                            <button type="button" class="btn default">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- END FORM-->
+            </div>
+        }
+    </div>
+</div>

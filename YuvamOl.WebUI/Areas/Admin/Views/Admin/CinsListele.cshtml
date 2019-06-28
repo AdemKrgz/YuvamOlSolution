@@ -1,0 +1,31 @@
+﻿@model List<Cins>
+@{
+    ViewBag.Title = "CinsListele";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="row">
+    <div class="col-md-12">
+        @Html.ActionLink("Cins Ekleme Paneli", "CinsAdd")
+    </div>
+</div>
+
+<h3>Cins Listesi</h3>
+
+<table class="table">
+    <tr>
+        <th>Ad</th>
+        
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Ad</td>
+            
+
+            @*<td>@Html.ActionLink("Sil", "TurDelete", new { id = item.Id }, new { @class = "btn btn-danger glyphicon glyphicon-remove" }) &nbsp; @Html.ActionLink("Güncelle", "TurUpdate", new { id = item.Id }, new { @class = "btn btn-warning  glyphicon glyphicon-user " })</td>*@
+        </tr>
+    }
+</table>
+
+

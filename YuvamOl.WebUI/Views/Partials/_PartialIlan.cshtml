@@ -1,0 +1,96 @@
+﻿
+@model List<IlanDetay>
+@*@model PagedList.IPagedList<YuvamOl.Entity.Models.IlanDetay>*@
+@using PagedList.Mvc;
+@using PagedList;
+
+@*@model PagedList.IPagedList<YuvamOl.Entity.Models.Ilan>
+@using PagedList.Mvc;
+@using PagedList;*@
+
+@if (Model!=null)
+{
+
+    foreach (var item in Model)
+    {
+        <div class="col-md-4">
+
+                <div class="img">
+                    <a title="@item.IlanBasligi" href="#">
+                        <img src="@item.IlanResimleri.FirstOrDefault().IlanFotografUrl" alt="@item.IlanBasligi" class="img-fluid" />
+                    </a>
+                </div>
+                <div class="info">
+                    <a title="@item.IlanBasligi" href="#">
+                        <h2>
+                            @item.IlanBasligi
+                        </h2>
+                    </a>
+                    <strong>@item.OlusturmaTarihi.Date&nbsp;</strong>
+                    <br />
+                    <strong>@item.Cins.Tur - @item.Cins.Ad &nbsp;</strong>
+                    <br />
+                </div>
+        </div>
+    }
+}
+
+
+<style>
+    .ul.pagination {
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+    }
+
+    ul.pagination li {
+        display: inline;
+    }
+
+        ul.pagination li a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: background-color .3s;
+        }
+
+            ul.pagination li a.active {
+                background-color: #4CAF50;
+                color: white;
+            }
+
+            ul.pagination li a:hover:not(.active) {
+                background-color: #ddd;
+            }
+</style>
+
+
+
+@*<h2>Kayıtlar</h2>
+
+<table>
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ad)
+            </td>
+
+        </tr>
+    }
+
+</table>*@
+
+@*<hr />*@
+@*<div>
+    pagination sayfası
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }), new PagedListRenderOptions
+{ LinkToFirstPageFormat = "<< 1", LinkToPreviousPageFormat = "< Önceki", LinkToNextPageFormat = "Sonraki >", LinkToLastPageFormat = "Son >>" })*@
+
+
+</div>
+
+

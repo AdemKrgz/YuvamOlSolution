@@ -1,0 +1,38 @@
+﻿@model List<BizeUlasin>
+@{
+    ViewBag.Title = "TurListele";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        @Html.ActionLink("Ana Sayfa", "Index")
+    </div>
+</div>
+
+<h3>Gelen Kutusu</h3>
+
+<table class="table">
+    <tr>
+        <th>Ad-Soyad</th>
+        <th>E-Posta</th>
+        <th>Mesaj</th>
+        <th>Sil</th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        
+    <tr>
+        <td>@item.AdSoyad</td>
+        <td>@item.EPosta</td>
+        <td>@item.Mesaj</td>
+        <td>@Html.ActionLink("Sil", "BizeUlasinDelete", new { id = item.Id }, new { @class = "btn btn-danger glyphicon glyphicon-remove" })</td>
+
+
+    </tr>
+    }
+    
+</table>
+
+

@@ -1,0 +1,63 @@
+﻿@model IlanDetayVM
+
+<!-- Start image-carusel Area -->
+
+@model IEnumerable<IlanDetay>
+ 
+<section class="image-carusel-area">
+    <div class="description">
+        @Model.ilanDetay.IlanBasligi
+    </div>
+    <div class="container">
+        <div class="row">
+           
+            <div class="active-image-carusel">
+                @foreach (var item in Model.ilanDetay.IlanResimleri)
+                {
+                    <div class="single-image-carusel">
+                        <img class="img-fluid" src="@item.IlanFotografUrl" alt="">
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="info">
+        <div class="description">
+            @Model.ilanDetay.IlanIcerigi
+        </div>
+        <hr />
+
+        @*<div class="user">
+            <span style="color:#212529">İlan Sahibi : @(@Model.AppUser.Name + " " + Model.AppUser.Surname) </span>
+            <a class="btn btn-outline-dark btn-sm" href="">Eshat Çelik</a>
+        </div>
+
+        <hr />*@
+
+        <div class="user">
+        <span>İlan Tarihi :@Model.ilanDetay.OlusturmaTarihi.Date </span>
+    </div>
+    <hr />
+    <div class="user">
+        <span style="color:#212529">Şehir :@Model.ilanDetay.Ilce.Sehir.Ad </span>
+    </div>
+    <hr />
+    <div class="user">
+        <span style="color:#212529">İlçe :@Model.ilanDetay.Ilce.Ad </span>
+    </div>
+    <hr />
+    <div class="user">
+        <span style="color:#212529">Pet Türü :@Model.ilanDetay.Cins.Tur.Ad </span>
+    </div>
+    <hr />
+    <div class="user">
+        <span style="color:#212529">Pet Cinsi :@Model.ilanDetay.Cins.Ad </span>
+    </div>
+    <hr />
+    <div class="contacts-info">
+        <span style="color:#212529">İletişim : @Model.AppUser.PhoneNumber</span>
+
+    </div>
+    <div style="margin-top:20px;"></div>
+    </div>
+</section>

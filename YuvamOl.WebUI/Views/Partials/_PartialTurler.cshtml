@@ -1,0 +1,39 @@
+﻿@model List<Tur>
+<div class="accordion" id="accordionExample" >
+    <div class="card">
+        <div class="card-header" style="background-color:#fab700" id="headingOne">
+            <h5 class="toggle-menu">
+                <button class="btn btn-link" style="color:black" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Pet Türleri
+                </button>
+            </h5>
+        </div>
+
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+                <ul class="sidebar-menu">
+                    @if (ViewBag.Title == "PetTurleri")
+                    {
+                        foreach (var item in Model)
+                        {
+                            <li> @Html.ActionLink(item.Ad, "PetTurleri", new { TurId = item.Id })</li>
+                            <hr />
+                        }
+
+                    }
+                    else
+                    {
+                        foreach (var item in Model)
+                        {
+                            <li> @Html.ActionLink(item.Ad, "PetTuruneGoreIlanGetir", new { TurId = item.Id })</li>
+                            <hr />
+                        }
+
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+

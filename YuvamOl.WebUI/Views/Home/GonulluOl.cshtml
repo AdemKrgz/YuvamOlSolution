@@ -1,0 +1,171 @@
+﻿@model GonulluOlVM
+
+@{
+    ViewBag.Title = "GonulluOl";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+
+@section baslik{
+
+    <section class="banner-area relative" id="gonullu">
+        <div class="overlay overlay-bg"></div>
+        <div class="container">
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="about-content col-lg-12">
+                    <h1 class="text-white">
+                        Gönüllü Ol!
+                    </h1>
+
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<section class="Volunteer-form-area section-gap" id="gonullu">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="menu-content pb-60 col-lg-9">
+                <div class="title text-center">
+                    <h1 class="mb-20">Yardım mı Etmek İstiyorsun? Gönüllü Ol!</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">   </div>
+        <div class="row col-md-6 justify-content-center">
+            @using (Html.BeginForm("GonulluOl", "Home", FormMethod.Post, new { id = "GonulluOlPost" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    @Html.Label("İsim", new { @for = "Ad" })
+                    @Html.TextBoxFor(x => x.GonulluOl.Ad, new { @class = "form-control", placeholder = "İsim Giriniz" })
+                    @Html.ValidationMessageFor(x => x.GonulluOl.Ad, null, new { @class = "text-danger" })
+
+                </div>
+                <div class="form-group">
+                    @Html.Label("Soyisim", new { @for = "Soyad" })
+                    @Html.TextBoxFor(x => x.GonulluOl.Soyad, new { @class = "form-control", placeholder = "Soyisim Giriniz" })
+                    @Html.ValidationMessageFor(x => x.GonulluOl.Ad, null, new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("Adres", new { @for = "Adres" })
+                    @Html.TextAreaFor(x => x.GonulluOl.Adres, new { @class = "form-control", placeholder = "Adres Giriniz" })
+                    @Html.ValidationMessageFor(x => x.GonulluOl.Adres, null, new { @class = "text-danger" })
+
+                </div>
+                <div class="form-row">
+                    <div class="col-6 mb-30">
+                        @Html.Label("Şehir", new { @for = "Sehir" })
+                        @Html.DropDownListFor(x => x.GonulluOl.Ilce.SehirId, (SelectList)TempData["SehirlerList"], new { @class = "form-control", placeholder = "Bir Şehir Seçiniz" })
+                    </div>
+                    <div class="col-6 mb-30">
+                        @Html.Label("Ilce", new { @for = "Sehir" })
+                        @Html.DropDownListFor(x => x.GonulluOl.IlceId, (SelectList)TempData["IlcelerList"], new { @class = "form-control", placeholder = "Bir Ilce Seçiniz" })
+                    </div>
+
+                    @*@{
+            Html.RenderPartial("~/Views/Partials/_PartialIlceGetir.cshtml", Ilceler);
+        }*@
+
+
+                    <div class="col-6 mb-30">
+                        @Html.Label("E-Posta", new { @for = "EPosta" })
+                        @Html.TextBoxFor(x => x.GonulluOl.EMail, new { @class = "form-control", placeholder = "E-Posta Giriniz" })
+                        @Html.ValidationMessageFor(x => x.GonulluOl.EMail, null, new { @class = "text-danger" })
+                    </div>
+                    <div class="col-6 mb-30">
+                        @Html.Label("Telefon", new { @for = "Telefon" })
+                        @Html.TextBoxFor(x => x.GonulluOl.Telefon, new { @class = "form-control", placeholder = "Telefon Giriniz" })
+                        @Html.ValidationMessageFor(x => x.GonulluOl.Telefon, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="note">Not</label>
+                    <textarea class="form-control" id="exampleTextarea" rows="5" placeholder="Not Ekleyin"></textarea>
+                </div>
+                <button type="submit" class="primary-btn float-right">Gönder</button>
+                <div class="col-md-3">   </div>
+            }
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#GonulluOl_Ilce_SehirId").change(function () {
+            var id = $(this).val();
+            var IlceList = $("#GonulluOl_IlceId");
+            IlceList.empty();
+            $.ajax({
+                url: '/Home/IlceList',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    __RequestVerificationToken: gettoken(),
+                    'SehirId': id
+                },
+                success: function (data) {
+                    $.each(data, function (index, option) {
+                        IlceList.append('<option value=' + option.Value + '> ' + option.Text + '</option>');
+                    });
+                }
+            });
+        });
+    });
+</script>
+
+
+
+
+
+
+
+
+
+@*<script >
+    $(document).ready(function () {
+        $('#GonulluOl_Ilce_SehirId').on('change', function () {
+            console.log("sehir");
+            $.ajax({
+                url: '@Url.Action("GonulluOl", "Home")',
+                type: 'post',
+                data: {
+                    __RequestVerificationToken: gettoken(),
+                    SehirId:$('#GonulluOl_Ilce_SehirId').val()
+                },
+                success: function () {
+                    console.log($('#Sehirler').val());
+                }
+            });
+        });
+    });
+</script>
+
+<script id="Ilceler">
+    $(document).ready(function () {
+        var hmtlId = '#Ilceler';
+        $(hmtlId).on('change', function () {
+            console.log("ilce");
+            $.ajax({
+                url: '@Url.Action("GonulluOlIlceGetir", "Home")',
+                type: 'post',
+                data: {
+                    __RequestVerificationToken: gettoken(),
+                    IlceId: $(hmtlId).val()
+                },
+                success: function () {
+                    console.log($('#Ilceler').val());
+                }
+            });
+        });
+    });
+</script>*@
+<script>
+    function gettoken() {
+        var token = '@Html.AntiForgeryToken()';
+        token = $(token).val();
+        return token;
+   }
+</script>

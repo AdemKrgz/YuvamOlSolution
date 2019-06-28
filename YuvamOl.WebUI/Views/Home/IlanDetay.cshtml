@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "IlanDetay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section baslik{
+    <section class="banner-area relative" id="home">
+        <div class="overlay overlay-bg"></div>
+        <div class="container">
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="about-content col-lg-12">
+                    <h1 class="text-white">
+                        Ilan Detay
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<div class="container">
+    <div class="row">
+        <div style="float:left; margin-left:0px;">
+            <div style="width:250px;margin-left:20px;float:left;">
+
+                <div style="width:250px;height:300px;border-radius:5px;">
+                    @Html.Partial("~/Views/Partials/_PartialTurler.cshtml", TempData["Turler"])
+
+                </div>
+                <div style="width:250px;height:300px;margin-top:20px;">
+                    @Html.Partial("~/Views/Partials/_PartialSehir.cshtml", TempData["Sehirler"])
+                </div>
+            </div>
+            <div class="row" style="background-color:white; float:right;margin-left:20px;width:840px">
+                <div class="col-md-12"style="margin-top:200px;">
+                    @Html.Partial("~/Views/Partials/_PartialIlanDetay.cshtml", TempData["IlanDetay"])
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <div class="col-md-10">
+
+    </div>
+    <div class="col-md-9">
+        <div class="col-md-4">
+            <div class="item" title="İlan Başlığı" href="#">
+                @*@foreach (var item in Model.Ilanlar)
+                    {
+                        <div class="img">
+                            <a title="@item.IlanBasligi" href="#">
+                                <img src="~/template/animalshelter/img/c3.jpg" alt="@item.IlanBasligi" class="img-fluid" />
+                            </a>
+                        </div>
+                        <div class="info">
+                            <a title="@item.IlanBasligi" href="#">
+                                <h2>
+                                    @item.IlanBasligi
+                                </h2>
+                            </a>
+                            <strong>@item.OlusturmaTarihi.Date&nbsp;</strong>
+                            <br />
+                            <strong>@item.Tur - @item.Cins&nbsp;</strong>
+                            <br />
+                        </div>
+                    }*@
+            </div>
+        </div>
+    </div>
+</div>

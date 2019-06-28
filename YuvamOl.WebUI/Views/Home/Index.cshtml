@@ -1,0 +1,119 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .anyClass {
+        height: 250px;
+        overflow-y: scroll;
+    }
+</style>
+
+@section baslik{
+    <section class="banner-area relative" id="home">
+        <div class="overlay overlay-bg"></div>
+        <div class="container">
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="about-content col-lg-12">
+                    <h1 class="text-white">
+                        Anasayfa
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<div class="container">
+    <div class="row">
+        <div style="float:left; margin-left:0px;">
+            <div style="width:250px;margin-left:20px;float:left;">
+                <div style="width:250px;height:300px;border-radius:5px;">
+                    @{
+                        Html.RenderPartial("~/Views/Partials/_PartialTurler.cshtml", TempData["Turler"]);
+                    }
+                </div>
+                <div style="width:250px;height:300px;margin-top:40px;">
+                    <div class="accordion">
+                        <div class="card">
+                            <div class="card-header" style="background-color:#fab700;" id="headingOne">
+                                <h6 style="margin-left:10px;">
+                                    Şehir
+                                </h6>
+                            </div>
+                            @using (Html.BeginForm("GirisYap", "Hesap", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken();
+
+                                <div class="input-group">
+
+                                    <input id="search" type="text" class="form-control" name="ara" placeholder="Şehir Ara">
+
+                                </div>
+                            }
+                            @Html.Action("SehirGetir", "Home");
+
+                            @{
+                                Html.RenderPartial("~/Views/Partials/_PartialSehir.cshtml", TempData["Şehirler"]);
+                            }
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <div class="row" style="float:right;margin-left:20px;width:840px">
+
+           
+                    @Html.Partial("~/Views/Partials/_PartialIlan.cshtml", TempData["Ilanlar"]);
+
+              
+
+        </div>
+    </div>
+</div>
+
+
+<script id="SehirArama">
+$('#search').on('input', function () {
+            $.ajax({
+                url: '@Url.Action("SehirGetir", "Home")',
+                type: 'post',
+                data: {
+                    sehir: $('#search').val()
+                },
+                    success: function (result) {
+                        $('#Sehirler').html(result);
+                        $('#Sehirler').show();
+                    console.log($('#search').val());
+                    console.log("hi");
+                        }
+                    });
+            });
+
+</script>
+
+
+<script id="TurArama">
+$('#search').on('input', function () {
+            $.ajax({
+                url: '@Url.Action("TurGetir", "Home")',
+                type: 'post',
+                data: {
+                    sehir: $('#search').val()
+                },
+                    success: function (result) {
+                        $('#Turler').html(result);
+                        $('#Turler').show();
+                    console.log($('#search').val());
+                    console.log("hi");
+                        }
+                    });
+            });
+
+</script>
